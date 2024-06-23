@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            width: 60%;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        video {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>视频播放器</h1>
+    <input type="text" id="videoUrl" placeholder="请输入视频链接">
+    <button onclick="playVideo()">确定</button>
+    <br>
+    <video id="videoPlayer" controls></video>
+    <button onclick="refreshVideo()">刷新视频</button>
+
+    <script>
+        function playVideo() {
+            var videoUrl = document.getElementById("videoUrl").value;
+            if (!videoUrl.startsWith("http://")) {
+                videoUrl = "http://" + videoUrl;
+            }
+            var videoPlayer = document.getElementById("videoPlayer");
+            videoPlayer.src = videoUrl;
+            videoPlayer.play();
+        }
+
+        function refreshVideo() {
+            var videoPlayer = document.getElementById("videoPlayer");
+            videoPlayer.load();
+            videoPlayer.play();
+        }
+    </script>
+</body>
+</html>
